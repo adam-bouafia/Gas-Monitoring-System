@@ -1,7 +1,5 @@
+Gas Monitoring System - IoT Project with Node-RED , InfluxDB and Telegram-Bot
 
-Sure, I can help you draft a README file for your GitHub repository. This README will provide an overview of your IoT project, including details about its components and how to set it up. Here's a template you can use:
-
-IoT Project with Node-RED and InfluxDB
 Overview
 This repository contains the necessary files for setting up an IoT project using Node-RED and InfluxDB. The project is designed for real-time data processing and visualization, and includes integration with a Telegram bot for notifications.
 
