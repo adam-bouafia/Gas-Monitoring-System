@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 26, "left": -48.66, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 23.8,
+      "left": 284.17,
+      "attrs": { "temperature": "37.9" }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": -350.2,
+      "left": 56.6,
+      "attrs": { "travelLength": "30" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -152.1,
+      "left": 495.1,
+      "attrs": { "distance": "60" }
+    },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 13.6, "left": -256.98, "attrs": {} },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper2",
+      "top": -217.19,
+      "left": 134.83,
+      "attrs": { "size": "17" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "dht1:SDA", "esp:D15", "limegreen", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "pot1:SIG", "esp:D34", "gold", [ "h-115.31", "v223.17" ] ],
+    [ "pot1:VCC", "esp:VIN", "green", [ "h-130.24", "v349.3" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v0.38", "h99.44", "v333.06" ] ],
+    [ "esp:GND.1", "ultrasonic1:GND", "black", [ "h283.36", "v-2.2", "h268.8" ] ],
+    [ "esp:3V3", "ultrasonic1:VCC", "red", [ "v-2.1", "h206.56" ] ],
+    [
+      "esp:D5",
+      "ultrasonic1:TRIG",
+      "green",
+      [ "h139.36", "v-2.1", "h86.4", "v-115.2", "h297.6" ]
+    ],
+    [ "esp:D18", "ultrasonic1:ECHO", "yellow", [ "h216.16", "v-126.9", "h182.4" ] ],
+    [ "pir1:VCC", "esp:3V3", "red", [ "v182.4", "h297.6", "v-105.6" ] ],
+    [ "pir1:GND", "esp:GND.2", "black", [ "v48", "h-0.26", "v28.8" ] ],
+    [ "pir1:OUT", "esp:D14", "green", [ "v38.4", "h143.86" ] ],
+    [ "stepper2:A-", "esp:D19", "green", [ "v57.6", "h0", "v28.8" ] ],
+    [ "stepper2:A+", "esp:D2", "green", [ "v86.4", "h0", "v86.4" ] ],
+    [ "stepper2:B+", "esp:D4", "green", [ "v115.2" ] ],
+    [ "stepper2:B-", "esp:D23", "green", [ "v86.4", "h-172.81" ] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,22 @@
+version: '3'
+services:
+  nodered:
+    image: custom-node-red
+    ports:
+      - "1880:1880"
+  influxdb:
+    image: influxdb:2.0
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=adam.bouafia
+      - DOCKER_INFLUXDB_INIT_PASSWORD=00000000
+      - DOCKER_INFLUXDB_INIT_ORG=A&R
+      - DOCKER_INFLUXDB_INIT_BUCKET=SHS
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=VINQ_vHZ4uqk-DifCjJQ6rAnqoqgeWVy9eN3Rp-zuBkG1gw9exGa-_XbvricHvJxtX0_A5W92iwGIVFxXd2eUw==
+
+volumes:
+  influxdb-data:

@@ -1,0 +1,16 @@
+# Wokwi Library List
+# See https://docs.wokwi.com/guides/libraries
+
+DHT sensor library for ESPx
+PubSubClient
+DHT sensor library
+Servo
+ESP32Servo
+LiquidCrystal I2C
+BlynkESP32_BT_WF
+Blynk
+AccelStepper
+EspMQTTClient
+DHT sensor library for ESPx
+WiFiManager
+Stepper
