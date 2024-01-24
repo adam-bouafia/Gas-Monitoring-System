@@ -2,159 +2,18 @@
     {
         "id": "c0cb3cf241673b85",
         "type": "tab",
-        "label": "Flow Smart Home Security",
+        "label": "Sensor Data Monitoring and Logging",
         "disabled": false,
-        "info": "",
+        "info": "This mqtt topic is used for sending regular sensor data readings.",
         "env": []
     },
     {
-        "id": "cd0197edee90bca8",
-        "type": "mqtt in",
-        "z": "c0cb3cf241673b85",
-        "name": "mqtt in data",
-        "topic": "univaq/gas",
-        "qos": "0",
-        "datatype": "auto-detect",
-        "broker": "e4607b3015ab0b1e",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 150,
-        "y": 280,
-        "wires": [
-            [
-                "e2ee1069b5aaf6b5",
-                "d1a8cd40d3515dc1",
-                "a03db7a74f11eab6"
-            ]
-        ]
-    },
-    {
-        "id": "d073e6860ab47589",
-        "type": "debug",
-        "z": "c0cb3cf241673b85",
-        "name": "debug TelegramBot",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 450,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "e2ee1069b5aaf6b5",
-        "type": "function",
-        "z": "c0cb3cf241673b85",
-        "name": "TelegramBot function",
-        "func": "var temperature = msg.payload.temperature;\nvar humidity = msg.payload.humidity;\nvar tank_capacity = msg.payload.tank_capacity;\nvar gas_level = msg.payload.gas_level;\n\nmsg.payload = {\n    \"chatId\": '-1002138906310',\n    \"type\": 'message',\n    \"content\": \"Sensor Readings:\\nTemperature: \" + temperature + \"°C\\nHumidity: \" + humidity + \"%\\nTank Capacity: \" + tank_capacity + \"\\nGas Level: \" + gas_level + \"%.\"\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 500,
-        "y": 360,
-        "wires": [
-            [
-                "7830a209aa524d48",
-                "d073e6860ab47589"
-            ]
-        ]
-    },
-    {
-        "id": "6de62b7bfadcd4d1",
-        "type": "influxdb out",
-        "z": "c0cb3cf241673b85",
-        "influxdb": "008c76b0492d489c",
-        "name": "",
-        "measurement": "environment",
-        "precision": "",
-        "retentionPolicy": "",
-        "database": "",
-        "precisionV18FluxV20": "s",
-        "retentionPolicyV18Flux": "",
-        "org": "A&R",
-        "bucket": "SHS",
-        "x": 860,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "d1a8cd40d3515dc1",
-        "type": "function",
-        "z": "c0cb3cf241673b85",
-        "name": "InfluxDB function",
-        "func": "var data = (typeof msg.payload === 'object') ? msg.payload : JSON.parse(msg.payload);\n\nmsg.payload = {\n    measurement: \"environment\",\n    fields: {\n        temperature: data.temperature,\n        humidity: data.humidity,\n        tank_capacity: data.tank_capacity,\n        gas_level: data.gas_level\n    },\n    timestamp: new Date().toISOString() // Convert to ISO string format\n};\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 510,
-        "y": 240,
-        "wires": [
-            [
-                "5ae320d6f87ea030",
-                "6de62b7bfadcd4d1"
-            ]
-        ]
-    },
-    {
-        "id": "5ae320d6f87ea030",
-        "type": "debug",
-        "z": "c0cb3cf241673b85",
-        "name": "debug influxDB",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "7830a209aa524d48",
-        "type": "telegram sender",
-        "z": "c0cb3cf241673b85",
-        "name": "",
-        "bot": "0cfab35f560bdd6d",
-        "haserroroutput": true,
-        "outputs": 2,
-        "x": 850,
-        "y": 340,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "a03db7a74f11eab6",
-        "type": "debug",
-        "z": "c0cb3cf241673b85",
-        "name": "debug in data",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 180,
-        "y": 140,
-        "wires": []
+        "id": "7cd84e32e112fb8c",
+        "type": "tab",
+        "label": "Environmental Alert Handler",
+        "disabled": false,
+        "info": "",
+        "env": []
     },
     {
         "id": "e4607b3015ab0b1e",
@@ -202,9 +61,9 @@
     {
         "id": "0cfab35f560bdd6d",
         "type": "telegram bot",
-        "botname": "smartfan_univaq_Bot",
+        "botname": "Gas_Monitoring_Univaq_bot",
         "usernames": "",
-        "chatids": "-1002138906310",
+        "chatids": "-1002046854475",
         "baseapiurl": "",
         "updatemode": "polling",
         "pollinterval": "300",
@@ -223,5 +82,303 @@
         "useselfsignedcertificate": false,
         "sslterminated": false,
         "verboselogging": false
+    },
+    {
+        "id": "cd0197edee90bca8",
+        "type": "mqtt in",
+        "z": "c0cb3cf241673b85",
+        "name": "mqtt in data",
+        "topic": "univaq/sensordata",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "e4607b3015ab0b1e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "e2ee1069b5aaf6b5",
+                "d1a8cd40d3515dc1",
+                "a03db7a74f11eab6"
+            ]
+        ]
+    },
+    {
+        "id": "d073e6860ab47589",
+        "type": "debug",
+        "z": "c0cb3cf241673b85",
+        "name": "debug TelegramBot",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e2ee1069b5aaf6b5",
+        "type": "function",
+        "z": "c0cb3cf241673b85",
+        "name": "TelegramBot function",
+        "func": "try {\n  var sensorData = typeof msg.payload === \"string\" ? JSON.parse(msg.payload) : msg.payload;\n  msg.payload = {\n    chatId: -1002046854475,\n    type: \"message\",\n    content: `Sensor Data Monitoring:\\nTemperature: ${sensorData.temperature}°C\\nHumidity: ${sensorData.humidity}%\\nGas Level: ${sensorData.gas_level}\\nTank Capacity: ${sensorData.tank_capacity}`\n  };\n} catch(e) {\n  node.error(\"Failed to parse sensor data payload for Telegram\", msg);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 360,
+        "wires": [
+            [
+                "7830a209aa524d48",
+                "d073e6860ab47589"
+            ]
+        ]
+    },
+    {
+        "id": "6de62b7bfadcd4d1",
+        "type": "influxdb out",
+        "z": "c0cb3cf241673b85",
+        "influxdb": "008c76b0492d489c",
+        "name": "",
+        "measurement": "sensor_data",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "A&R",
+        "bucket": "SHS",
+        "x": 860,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "d1a8cd40d3515dc1",
+        "type": "function",
+        "z": "c0cb3cf241673b85",
+        "name": "InfluxDB function",
+        "func": "try {\n  var data = typeof msg.payload === \"string\" ? JSON.parse(msg.payload) : msg.payload;\n  msg.payload = [\n    {\n      measurement: \"sensor_data\",\n      fields: {\n        temperature: data.temperature,\n        humidity: data.humidity,\n        gasLevel: data.gas_level,\n        tankCapacity: data.tank_capacity\n      },\n      timestamp: new Date().toISOString(),\n      tags: { source: \"ESP32\" }\n    }\n  ];\n} catch(e) {\n  node.error(\"Failed to parse sensor data payload\", msg);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 240,
+        "wires": [
+            [
+                "5ae320d6f87ea030",
+                "6de62b7bfadcd4d1"
+            ]
+        ]
+    },
+    {
+        "id": "5ae320d6f87ea030",
+        "type": "debug",
+        "z": "c0cb3cf241673b85",
+        "name": "debug influxDB",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a03db7a74f11eab6",
+        "type": "debug",
+        "z": "c0cb3cf241673b85",
+        "name": "1 debug in data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7830a209aa524d48",
+        "type": "telegram sender",
+        "z": "c0cb3cf241673b85",
+        "name": "",
+        "bot": "0cfab35f560bdd6d",
+        "haserroroutput": true,
+        "outputs": 2,
+        "x": 850,
+        "y": 340,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a1e5514adc97054b",
+        "type": "mqtt in",
+        "z": "7cd84e32e112fb8c",
+        "name": "mqtt in data",
+        "topic": "univaq/alerts",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "e4607b3015ab0b1e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "053d7297e288e8d4",
+                "c116b5d7f0bdfdfb",
+                "b25df09632fa5f3e"
+            ]
+        ]
+    },
+    {
+        "id": "bf8dbb309d466222",
+        "type": "debug",
+        "z": "7cd84e32e112fb8c",
+        "name": "debug TelegramBot",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "053d7297e288e8d4",
+        "type": "function",
+        "z": "7cd84e32e112fb8c",
+        "name": "TelegramBot function",
+        "func": "try {\n  var alertData = typeof msg.payload === \"string\" ? JSON.parse(msg.payload) : msg.payload;\n  msg.payload = {\n    chatId: -1002046854475,\n    type: \"message\",\n    content: `${alertData.alertType}\\n${alertData.message}\\nValue: ${alertData.value}`\n  };\n} catch (e) {\n  node.error(\"Failed to parse alert data payload for Telegram\", msg);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "38c7648284a4c7dd",
+                "bf8dbb309d466222"
+            ]
+        ]
+    },
+    {
+        "id": "51cf75cced5a2bac",
+        "type": "influxdb out",
+        "z": "7cd84e32e112fb8c",
+        "influxdb": "008c76b0492d489c",
+        "name": "",
+        "measurement": "alerts",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "A&R",
+        "bucket": "alerts",
+        "x": 860,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c116b5d7f0bdfdfb",
+        "type": "function",
+        "z": "7cd84e32e112fb8c",
+        "name": "InfluxDB function",
+        "func": "try {\n  var alertData = typeof msg.payload === \"string\" ? JSON.parse(msg.payload) : msg.payload;\n  msg.payload = [\n    {\n      measurement: \"alerts\",\n      fields: {\n        alertType: alertData.alertType,\n        message: alertData.message\n      },\n      timestamp: new Date().toISOString(),\n      tags: { source: \"ESP32\" }\n    }\n  ];\n} catch (e) {\n  node.error(\"Failed to parse alert data payload\", msg);\n}\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 180,
+        "wires": [
+            [
+                "f03c44df4f7b8a07",
+                "51cf75cced5a2bac"
+            ]
+        ]
+    },
+    {
+        "id": "f03c44df4f7b8a07",
+        "type": "debug",
+        "z": "7cd84e32e112fb8c",
+        "name": "debug influxDB",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "b25df09632fa5f3e",
+        "type": "debug",
+        "z": "7cd84e32e112fb8c",
+        "name": "2 debug in data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "38c7648284a4c7dd",
+        "type": "telegram sender",
+        "z": "7cd84e32e112fb8c",
+        "name": "",
+        "bot": "0cfab35f560bdd6d",
+        "haserroroutput": true,
+        "outputs": 2,
+        "x": 870,
+        "y": 280,
+        "wires": [
+            [],
+            []
+        ]
     }
 ]
