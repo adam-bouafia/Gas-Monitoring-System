@@ -1,7 +1,7 @@
 version: '3'
 services:
   nodered:
-    image: gms_univaq_image
+    image: adambouafia/gms_univaq_image:latest
     ports:
       - "1880:1880"
   influxdb:
