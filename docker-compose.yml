@@ -1,7 +1,7 @@
 version: '3'
 services:
   nodered:
-    image: custom-node-red
+    image: gms_univaq_image
     ports:
       - "1880:1880"
   influxdb:
