@@ -34,6 +34,8 @@ Functionality: The Telegram bot, implemented through node-red-contrib-telegrambo
 Alerts and Notifications: It is configured to send alerts and notifications related to the gas monitoring system. For instance, if the gas level exceeds a certain threshold or if there are significant changes in temperature or humidity, the bot sends a timely alert to the configured Telegram channel.
 Remote Monitoring: This integration allows users to stay informed about the status of their home environment remotely, enhancing the overall safety and responsiveness of the system.
 
+Telegram Token: 6929987251:AAE8CLPurQHXwoZECkgCzhH3KReH7ltsxuk
+
 Gas Monitoring System Data Handling:
 
 Sensors: The system includes sensors for temperature, humidity, gas level, and tank level. These sensors continuously monitor the environment and provide vital data for safety and security.
