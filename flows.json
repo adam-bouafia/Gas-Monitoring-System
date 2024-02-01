@@ -61,9 +61,9 @@
     {
         "id": "0cfab35f560bdd6d",
         "type": "telegram bot",
-        "botname": "smartfan_univaq_Bot",
+        "botname": "Gas_Monitoring_Univaq_bot",
         "usernames": "",
-        "chatids": "-1002138906310",
+        "chatids": "-1002046854475",
         "baseapiurl": "",
         "updatemode": "polling",
         "pollinterval": "300",
@@ -145,24 +145,6 @@
         ]
     },
     {
-        "id": "6de62b7bfadcd4d1",
-        "type": "influxdb out",
-        "z": "c0cb3cf241673b85",
-        "influxdb": "008c76b0492d489c",
-        "name": "",
-        "measurement": "sensor_data",
-        "precision": "",
-        "retentionPolicy": "",
-        "database": "",
-        "precisionV18FluxV20": "s",
-        "retentionPolicyV18Flux": "",
-        "org": "A&R",
-        "bucket": "SHS",
-        "x": 860,
-        "y": 260,
-        "wires": []
-    },
-    {
         "id": "d1a8cd40d3515dc1",
         "type": "function",
         "z": "c0cb3cf241673b85",
@@ -215,6 +197,24 @@
         "statusType": "auto",
         "x": 180,
         "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6de62b7bfadcd4d1",
+        "type": "influxdb out",
+        "z": "c0cb3cf241673b85",
+        "influxdb": "008c76b0492d489c",
+        "name": "",
+        "measurement": "sensor_data",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "A&R",
+        "bucket": "SHS",
+        "x": 860,
+        "y": 260,
         "wires": []
     },
     {
@@ -294,24 +294,6 @@
         ]
     },
     {
-        "id": "51cf75cced5a2bac",
-        "type": "influxdb out",
-        "z": "7cd84e32e112fb8c",
-        "influxdb": "008c76b0492d489c",
-        "name": "",
-        "measurement": "alerts",
-        "precision": "",
-        "retentionPolicy": "",
-        "database": "",
-        "precisionV18FluxV20": "s",
-        "retentionPolicyV18Flux": "",
-        "org": "A&R",
-        "bucket": "alerts",
-        "x": 860,
-        "y": 200,
-        "wires": []
-    },
-    {
         "id": "c116b5d7f0bdfdfb",
         "type": "function",
         "z": "7cd84e32e112fb8c",
@@ -364,6 +346,24 @@
         "statusType": "auto",
         "x": 200,
         "y": 80,
+        "wires": []
+    },
+    {
+        "id": "51cf75cced5a2bac",
+        "type": "influxdb out",
+        "z": "7cd84e32e112fb8c",
+        "influxdb": "008c76b0492d489c",
+        "name": "",
+        "measurement": "alerts",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "A&R",
+        "bucket": "alerts",
+        "x": 860,
+        "y": 200,
         "wires": []
     },
     {

@@ -4,6 +4,9 @@ services:
     image: adambouafia/gms_univaq_image:latest
     ports:
       - "1880:1880"
+    networks:
+      - univaq-net
+
   influxdb:
     image: influxdb:2.0
     ports:
@@ -16,7 +19,25 @@ services:
       - DOCKER_INFLUXDB_INIT_PASSWORD=00000000
       - DOCKER_INFLUXDB_INIT_ORG=A&R
       - DOCKER_INFLUXDB_INIT_BUCKET=SHS
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=nCl6p9eqwNqHzcEwuc19x8S0GAA_1_DdQ17Ad0ZahpM8jI4Laf0f5EPEPxTzUBIYC2rP2yI0PqUmyocgxjplig==
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=YtSTZaPMzl8nI1WCfL0CNOPAn4sPgmzcO2FGMxiYTiq6We6BzB1tAygP55pBl3Kht_mGpNfkbHPCb1Vtyo96UQ==
+    networks:
+      - univaq-net
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana-gaz-dashboard:/etc/grafana/provisioning/dashboards
+      - ./grafana-provisioning:/etc/grafana/provisioning/datasources
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    depends_on:
+      - influxdb
+    networks:
+      - univaq-net
 
 volumes:
   influxdb-data:
+  grafana-data:
