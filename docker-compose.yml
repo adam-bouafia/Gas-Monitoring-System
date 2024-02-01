@@ -41,3 +41,5 @@ services:
 volumes:
   influxdb-data:
   grafana-data:
+networks:
+  univaq-net: {}
