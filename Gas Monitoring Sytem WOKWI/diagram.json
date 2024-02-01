@@ -3,12 +3,12 @@
   "author": "Uri Shaked",
   "editor": "wokwi",
   "parts": [
-    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 26, "left": -48.66, "attrs": {} },
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 71.9, "left": 52.6, "attrs": {} },
     {
       "type": "wokwi-dht22",
       "id": "dht1",
-      "top": 23.8,
-      "left": 284.17,
+      "top": -191.7,
+      "left": 397.8,
       "attrs": { "temperature": "37.9" }
     },
     {
@@ -21,17 +21,26 @@
     {
       "type": "wokwi-hc-sr04",
       "id": "ultrasonic1",
-      "top": -152.1,
-      "left": 495.1,
+      "top": -209.7,
+      "left": 120.7,
       "attrs": { "distance": "60" }
     },
-    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 13.6, "left": -256.98, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -207.2, "left": 2.22, "attrs": {} },
     {
       "type": "wokwi-stepper-motor",
       "id": "stepper2",
-      "top": -217.19,
-      "left": 134.83,
+      "top": -103.07,
+      "left": 506.49,
+      "rotate": 90,
       "attrs": { "size": "17" }
+    },
+    {
+      "type": "wokwi-biaxial-stepper",
+      "id": "stepper1",
+      "top": -193.76,
+      "left": -349.4,
+      "rotate": 180,
+      "attrs": {}
     }
   ],
   "connections": [
@@ -54,11 +63,15 @@
     [ "esp:D18", "ultrasonic1:ECHO", "yellow", [ "h216.16", "v-126.9", "h182.4" ] ],
     [ "pir1:VCC", "esp:3V3", "red", [ "v182.4", "h297.6", "v-105.6" ] ],
     [ "pir1:GND", "esp:GND.2", "black", [ "v48", "h-0.26", "v28.8" ] ],
-    [ "pir1:OUT", "esp:D14", "green", [ "v38.4", "h143.86" ] ],
+    [ "pir1:OUT", "esp:D13", "green", [ "v38.4", "h143.86" ] ],
     [ "stepper2:A-", "esp:D19", "green", [ "v57.6", "h0", "v28.8" ] ],
     [ "stepper2:A+", "esp:D2", "green", [ "v86.4", "h0", "v86.4" ] ],
     [ "stepper2:B+", "esp:D4", "green", [ "v115.2" ] ],
-    [ "stepper2:B-", "esp:D23", "green", [ "v86.4", "h-172.81" ] ]
+    [ "stepper2:B-", "esp:D23", "green", [ "v86.4", "h-172.81" ] ],
+    [ "stepper1:B2-", "esp:D13", "green", [ "h0" ] ],
+    [ "stepper1:B2+", "esp:D12", "green", [ "h0" ] ],
+    [ "stepper1:A2+", "esp:D14", "green", [ "h0" ] ],
+    [ "stepper1:A2-", "esp:D27", "green", [ "h0" ] ]
   ],
   "dependencies": {}
 }
