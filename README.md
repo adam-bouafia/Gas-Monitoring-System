@@ -1,4 +1,4 @@
-Gas Monitoring System - IoT Project with Node-RED , InfluxDB and Telegram-Bot
+Gas Monitoring System - IoT Project with Node-RED , InfluxDB and Telegram-Bot using MAPE-K Architecture
 
 Overview
 This repository contains the necessary files for setting up an IoT project using Node-RED and InfluxDB. The project is designed for real-time data processing and visualization, and includes integration with a Telegram bot for notifications.
