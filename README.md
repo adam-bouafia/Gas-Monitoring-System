@@ -27,6 +27,7 @@ InfluxDB Integration:
 Purpose: InfluxDB, a time-series database, is used for storing and managing data related to gas monitoring, including temperature, humidity, gas level, and tank level. This data is crucial for trend analysis and historical tracking.
 Data Flow: The system captures real-time data from various sensors and sends it to InfluxDB. This allows for efficient data querying and visualization, supporting both real-time monitoring and historical analysis.
 
+InfluxDB Token: YtSTZaPMzl8nI1WCfL0CNOPAn4sPgmzcO2FGMxiYTiq6We6BzB1tAygP55pBl3Kht_mGpNfkbHPCb1Vtyo96UQ==
 
 Telegram Bot Integration:
 
@@ -34,7 +35,7 @@ Functionality: The Telegram bot, implemented through node-red-contrib-telegrambo
 Alerts and Notifications: It is configured to send alerts and notifications related to the gas monitoring system. For instance, if the gas level exceeds a certain threshold or if there are significant changes in temperature or humidity, the bot sends a timely alert to the configured Telegram channel.
 Remote Monitoring: This integration allows users to stay informed about the status of their home environment remotely, enhancing the overall safety and responsiveness of the system.
 
-Telegram Token: 6929987251:AAE8CLPurQHXwoZECkgCzhH3KReH7ltsxuk
+Telegram Token: 6733695509:AAFdxjdDBcj7rxRIaK_QNfzVCFXifgbAJrA
 
 Gas Monitoring System Data Handling:
 
