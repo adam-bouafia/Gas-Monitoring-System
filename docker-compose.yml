@@ -1,14 +1,57 @@
-version: '3'
+version: '3.8'
+
 services:
+  monitor:
+    build:
+      context: ./MAPE-K/Monitor
+      dockerfile: Dockerfile
+    networks:
+      - univaq-net
+
+  analyzer:
+    build:
+      context: ./MAPE-K/Analysis
+      dockerfile: Dockerfile
+    networks:
+      - univaq-net
+
+  planner_ventilation:
+    build:
+      context: ./MAPE-K/Planning/Planning_ventilation
+      dockerfile: Dockerfile
+    networks:
+      - univaq-net
+
+  planner_actuatorcommands:
+    build:
+      context: ./MAPE-K/Planning/Planning_ActuatorCommands
+      dockerfile: Dockerfile
+    networks:
+      - univaq-net    
+
+  executor_ventilation:
+    build:
+      context: ./MAPE-K/Execution/Execution_ventilation
+      dockerfile: Dockerfile
+    networks:
+      - univaq-net
+
+  executor_actuatorcommands:
+    build:
+      context: ./MAPE-K/Execution/Execution_ActuatorCommands
+      dockerfile: Dockerfile
+    networks:
+      - univaq-net      
+
   nodered:
-    image: adambouafia/gms_univaq_image:latest
+    image: adambouafia/gaz_univaq_image:latest
     ports:
       - "1880:1880"
     networks:
       - univaq-net
 
   influxdb:
-    image: influxdb:2.0
+    image: influxdb:2.7.5
     ports:
       - "8086:8086"
     volumes:
@@ -31,8 +74,6 @@ services:
       - grafana-data:/var/lib/grafana
       - ./grafana-gaz-dashboard:/etc/grafana/provisioning/dashboards
       - ./grafana-provisioning:/etc/grafana/provisioning/datasources
-    environment:
-      - GF_AUTH_ANONYMOUS_ENABLED=true
     depends_on:
       - influxdb
     networks:
@@ -41,5 +82,6 @@ services:
 volumes:
   influxdb-data:
   grafana-data:
+
 networks:
-  univaq-net: {}
+  univaq-net:

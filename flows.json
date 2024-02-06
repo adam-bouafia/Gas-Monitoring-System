@@ -54,7 +54,7 @@
         "usetls": false,
         "tls": "",
         "influxdbVersion": "2.0",
-        "url": "http://localhost:8086",
+        "url": "gas-influxdb-1:8086",
         "timeout": "",
         "rejectUnauthorized": true
     },
